@@ -84,7 +84,7 @@
   transform: translateX(-50%);
   max-width: 430px;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -124,7 +124,12 @@
     #door-screen .seal-text {
       display: none;
     }
-
+   body.door-lock,
+body.door-lock .app-viewport {
+  overflow: hidden !important;
+  height: 100dvh !important;
+  touch-action: none !important;
+}
 
     .door-open .center-seal {
       pointer-events: none;
@@ -1436,7 +1441,7 @@
         <div class="event-info">
           <div class="event-date-title">Wednesday, 26 August 2026</div>
           <div class="event-name">Wedding</div>
-          <div class="event-time-venue">3:31 AM (Early Morning) Muhurtham </div>
+          <div class="event-time-venue">3:31 AM (Wednesday Night) Muhurtham </div>
           <div class="event-quote">"Music, dance and the whole family on its feet."</div>
           <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20-%20Saanvi%20%26%20Vihaan&dates=20261210T123000Z%2F20261210T153000Z&details=Wedding%20-%20Saanvi%20%26%20Vihaan%20Wedding%20Invitation&location=Taj%20Palace%2C%20Hyderabad&ctz=Asia%2FKolkata" class="add-cal-btn" target="_blank" rel="noopener noreferrer">+ ADD TO CALENDAR</a>
         </div>
@@ -1465,7 +1470,7 @@
         <a href="https://www.google.com/maps/search/?api=1&query=Sri+Dwarakamaye+Gardens+Burugupudi+Andhra+Pradesh"
            target="_blank"
            rel="noopener noreferrer"
-           style="display:inline-block; text-decoration:none; color:var(--maroon); font-weight:600; letter-spacing:1px; font-size:0.92rem;">📍 GET DIRECTIONS</a>
+           style="display:inline-block; text-decoration:none; color:var(--maroon); font-weight:600; letter-spacing:1px; font-size:0.92rem; background: var(--gold-light); border: 1.5px solid var(--gold); padding: 10px 22px; border-radius: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">📍 GET DIRECTIONS</a>
       </div>
 
     
@@ -1482,6 +1487,8 @@
   </div>
 
   <script>
+    
+document.body.classList.add('door-lock');
     // 1. Envelope Opening Animation
     function prepareDoorPanels() {
       const screen = document.getElementById('door-screen');
@@ -1523,6 +1530,8 @@
       prepareDoorPanels();
       
       document.getElementById('bg-music').play().catch(() => {});
+      document.body.classList.remove('door-lock');   // ADD THIS LINE
+
 
       // Force the initial closed state to paint before moving the two halves.
       requestAnimationFrame(() => {
@@ -1545,7 +1554,7 @@
         petal.style.left = Math.random() * 100 + '%';
         petal.style.width = (Math.random() * 10 + 8) + 'px';
         petal.style.height = (Math.random() * 12 + 10) + 'px';
-        petal.style.animationDelay = (Math.random() * 5) + 's';
+        petal.style.animationDelay = '-' + (Math.random() * 8) + 's';
         petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
         container.appendChild(petal);
       }
@@ -1759,7 +1768,7 @@ setInterval(updateCountdown, 1000);
             <div class="dolak-compact-title">Wedding</div>
             <div class="dolak-compact-rule">◆ ─────── ◆</div>
             <div class="dolak-compact-subtitle">Two hearts, two souls, one beautiful journey</div>
-            <div class="dolak-compact-detail">26 August 2026 | 3:31 AM (Early Morning)</div>
+            <div class="dolak-compact-detail">26 August 2026 | 3:31 AM (Wednesday Night) Muhurtham</div>
             <div class="dolak-compact-detail">Sri Dwarakamaye Gardens, Burugupudi</div>
           </div>
         </div>`;
