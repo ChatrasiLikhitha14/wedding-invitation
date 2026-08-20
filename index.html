@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Trisha & Surendra Babu - Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --maroon: #600000;
+      --deep-red: #800000;
+      --gold: #d4af37;
+      --gold-light: #fbe8a6;
+      --cream: #fffdf5;
+      --text-dark: #3a2212;
+      --pink-soft: #f8e5e5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* FONT-ONLY UPDATE: Match the elegant italic serif style shown in the Haldi reference. */
+    body, body * {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-style: italic !important;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* Mobile Container Frame */
+    .app-viewport {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: var(--cream);
+      position: relative;
+      box-shadow: 0 0 30px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+
+    /* Floating Petals Animation */
+    .petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 90;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      background: #e8a7b8;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.7;
+      animation: floatPetal 8s linear infinite;
+    }
+
+    @keyframes floatPetal {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* SCREEN 1: DOORS / ENVELOPE */
+    #door-screen {
+      position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2b0000;
+    background-image: url('./images/opening.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    /* The supplied first photo is the complete door screen. */
+    #door-screen .door-wrapper {
+      background: transparent;
+    }
+
+    #door-screen .door {
+      display: none;
+      background-repeat: no-repeat;
+      will-change: transform;
+    }
+
+    #door-screen .center-seal {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      animation: none;
+      color: transparent;
+      cursor: pointer;
+    }
+
+    #door-screen .seal-monogram,
+    #door-screen .seal-text {
+      display: none;
+    }
+
+
+    .door-open .center-seal {
+      pointer-events: none;
+    }
+    .door-wrapper {
+      width: 100%;
+      max-width: 430px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #e5b92f, #fff08a, #d2a51c);
+      border: 3px solid var(--gold);
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.45), inset 0 0 20px rgba(0,0,0,0.22), 0 0 18px rgba(255,215,0,0.35);
+      transition: transform 5s cubic-bezier(0.77, 0, 0.175, 1);
+      transform-style: preserve-3d;
+      backface-visibility: visible;
+      z-index: 10;
+    }
+
+    .door.left { left: 0; transform-origin: left center; }
+    .door.right { right: 0; transform-origin: right center; }
+
+    /* Clearly visible real-door opening from the outer hinges. */
+    .door-open .door.left { transform: rotateY(-82deg); }
+    .door-open .door.right { transform: rotateY(82deg); }
+
+    .center-seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, #a00000 0%, #500000 100%);
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--gold-light);
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      animation: pulseSeal 2s infinite;
+    }
+
+    @keyframes pulseSeal {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.06); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .seal-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.851rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .seal-text {
+      font-size: 0.7268rem;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+    }
+
+
+    .haldi-floral-card {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      padding: 70px 52px;
+      background: linear-gradient(135deg, #fffdf5 0%, #fff5c9 55%, #ffe7a0 100%);
+      border: 4px solid #d4af37;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .haldi-floral-border {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 3px;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 2;
+      filter: saturate(1.15);
+    }
+
+    .haldi-floral-border.top { top: 15px; }
+    .haldi-floral-border.bottom { bottom: 15px; }
+
+    .haldi-floral-side {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 25px;
+      line-height: 1.7;
+      z-index: 2;
+      filter: saturate(1.15);
+    }
+
+    .haldi-floral-side.left { left: 12px; }
+    .haldi-floral-side.right { right: 12px; }
+
+    body.haldi-scratch-lock,
+    body.haldi-scratch-lock .app-viewport {
+      overflow: hidden !important;
+      touch-action: none !important;
+      overscroll-behavior: none !important;
+    }
+
+    #scratch-canvas {
+      touch-action: none !important;
+    }
+
+
+    /* Dolak reveal — separate festive style */
+    .dolak-reveal-card {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #fff8df 0%, #ffe6a3 58%, #f4c75d 100%);
+      border: 4px solid #9b1c1c;
+      border-radius: 18px;
+      color: #6d1010;
+    }
+
+    .dolak-reveal-card .dolak-top,
+    .dolak-reveal-card .dolak-bottom {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 94%;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 21px;
+      letter-spacing: 3px;
+      z-index: 2;
+    }
+
+    .dolak-reveal-card .dolak-top { top: 12px; }
+    .dolak-reveal-card .dolak-bottom { bottom: 12px; }
+
+    .dolak-reveal-card .dolak-left,
+    .dolak-reveal-card .dolak-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 23px;
+      line-height: 1.65;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .dolak-reveal-card .dolak-left { left: 10px; }
+    .dolak-reveal-card .dolak-right { right: 10px; }
+
+    .dolak-reveal-card .dolak-center {
+      position: relative;
+      z-index: 3;
+      padding: 65px 48px;
+      text-align: center;
+    }
+
+    .dolak-reveal-card .dolak-icon {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+
+
+    /* Dolak opens as its own full-screen leaf-decorated page */
+    .dolak-fullscreen-modal {
+      padding: 0 !important;
+      align-items: stretch !important;
+      justify-content: stretch !important;
+      background: #f8f2df !important;
+    }
+
+    .dolak-fullscreen-modal .modal-content {
+      width: 100% !important;
+      max-width: none !important;
+      height: 100dvh !important;
+      max-height: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      overflow: hidden !important;
+      background: #fffaf0 !important;
+    }
+
+    .dolak-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.98), rgba(255,247,218,.97) 58%, rgba(229,205,137,.92) 100%);
+      border: 8px solid #b08a2e;
+      box-sizing: border-box;
+      color: #5f461d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dolak-page::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 2px solid rgba(113,128,52,.55);
+      pointer-events: none;
+    }
+
+    .dolak-page-close {
+      position: absolute;
+      top: max(20px, env(safe-area-inset-top));
+      right: 22px;
+      z-index: 10;
+      border: 0;
+      background: rgba(255,255,255,.82);
+      color: #5f461d;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 32px;
+      line-height: 40px;
+      cursor: pointer;
+    }
+
+    .dolak-leaves {
+      position: absolute;
+      z-index: 2;
+      color: #526b2e;
+      filter: saturate(1.05);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .dolak-leaves-top,
+    .dolak-leaves-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      text-align: center;
+      font-size: clamp(24px, 6vw, 42px);
+      letter-spacing: 5px;
+      white-space: nowrap;
+    }
+
+    .dolak-leaves-top { top: 48px; }
+    .dolak-leaves-bottom { bottom: 42px; }
+
+    .dolak-leaves-left,
+    .dolak-leaves-right {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(25px, 6vw, 40px);
+      line-height: 2;
+      text-align: center;
+    }
+
+    .dolak-leaves-left { left: 22px; }
+    .dolak-leaves-right { right: 22px; }
+
+    .dolak-page-inner {
+      position: relative;
+      z-index: 4;
+      width: min(72%, 560px);
+      text-align: center;
+      padding: 28px 18px;
+    }
+
+    .dolak-drum {
+      font-size: clamp(64px, 17vw, 110px);
+      margin-bottom: 12px;
+    }
+
+    .dolak-page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 12vw, 5.6rem);
+      font-style: italic;
+      color: var(--maroon);
+      line-height: 1;
+    }
+
+    .dolak-page-rule {
+      color: #b08a2e;
+      margin: 22px 0;
+      letter-spacing: 2px;
+    }
+
+    .dolak-page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 5vw, 2rem);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .dolak-page-details {
+      font-size: clamp(1rem, 4vw, 1.3rem);
+      margin-bottom: 9px;
+    }
+
+    .dolak-page-venue {
+      font-size: clamp(.95rem, 3.8vw, 1.2rem);
+      color: #6f6755;
+    }
+
+
+
+    .dolak-tap-page .dolak-page-inner {
+      width: min(78%, 560px);
+    }
+
+    .tap-drum {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: transform .12s ease;
+      font-size: clamp(72px, 19vw, 115px);
+      margin: 14px 0 8px;
+    }
+
+    .tap-drum:active {
+      transform: scale(.94) rotate(-2deg);
+    }
+
+    .tap-drum.dolak-hit {
+      animation: dolakHit .28s ease;
+    }
+
+    @keyframes dolakHit {
+      0% { transform: scale(1); }
+      45% { transform: scale(.9) rotate(-3deg); }
+      100% { transform: scale(1); }
+    }
+
+    .dolak-tap-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 6vw, 2rem);
+      color: var(--maroon);
+      margin-top: 6px;
+    }
+
+    .dolak-tap-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .dolak-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: rgba(128,0,0,.18);
+      border: 2px solid rgba(128,0,0,.35);
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .dolak-dot.active {
+      background: var(--maroon);
+      transform: scale(1.15);
+    }
+
+    .dolak-info-reveal {
+      animation: dolakInfoReveal .65s ease both;
+    }
+
+    @keyframes dolakInfoReveal {
+      from { opacity: 0; transform: translateY(18px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .revealed-drum {
+      font-size: clamp(64px, 17vw, 100px);
+      margin-bottom: 14px;
+    }
+
+
+
+    .dolak-compact-trigger {
+      width: 92px !important;
+      min-width: 92px !important;
+      height: 92px !important;
+    }
+
+    .dolak-compact-modal {
+      padding: 18px !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(20,16,12,.72) !important;
+    }
+
+    .dolak-compact-modal .modal-content {
+      width: min(88vw, 390px) !important;
+      height: auto !important;
+      max-height: 82dvh !important;
+      margin: auto !important;
+      padding: 0 !important;
+      border-radius: 24px !important;
+      overflow: hidden !important;
+      background: transparent !important;
+    }
+
+    .dolak-compact-page {
+      position: relative;
+      width: 100%;
+      min-height: 470px;
+      box-sizing: border-box;
+      border: 5px solid #c49a2e;
+      border-radius: 24px;
+      background: linear-gradient(145deg,#fffdf5,#fff2c6);
+      color: #681313;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+    }
+
+    .dolak-compact-page::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1.5px solid rgba(196,154,46,.5);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .dolak-compact-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      color: #681313;
+      font-size: 27px;
+      line-height: 35px;
+    }
+
+    .dolak-flower-top,
+    .dolak-flower-bottom {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 22px;
+      letter-spacing: 5px;
+      z-index: 2;
+    }
+    .dolak-flower-top { top: 22px; }
+    .dolak-flower-bottom { bottom: 20px; }
+
+    .dolak-flower-left,
+    .dolak-flower-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 23px;
+      line-height: 2.8;
+      z-index: 2;
+    }
+    .dolak-flower-left { left: 13px; }
+    .dolak-flower-right { right: 13px; }
+
+    .dolak-compact-inner {
+      position: relative;
+      z-index: 4;
+      width: 72%;
+      text-align: center;
+      padding: 70px 8px 62px;
+    }
+
+    .dolak-compact-heading,
+    .dolak-compact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.35rem;
+      font-style: italic;
+      color: var(--maroon);
+      line-height: 1.05;
+    }
+
+    .dolak-compact-drum {
+      font-size: 82px !important;
+      line-height: 1;
+      margin: 20px auto 18px !important;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .dolak-compact-rule {
+      color: #b28b27;
+      margin: 14px 0;
+    }
+
+    .dolak-compact-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #6a5436;
+      margin-bottom: 18px;
+    }
+
+    .dolak-compact-detail {
+      font-size: .98rem;
+      color: #6c6253;
+      line-height: 1.5;
+    }
+
+
+    /* MAIN CONTENT SCROLL */
+    .hero-card {
+      padding: 30px 20px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #fff2db 0%, var(--cream) 100%);
+      border-bottom: 2px solid rgba(212,175,55,0.3);
+      position: relative;
+    }
+
+    .supplied-hero-photo {
+      padding: 0;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .subtitle-top {
+      font-size: 0.9913rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7a5230;
+      margin-bottom: 10px;
+    }
+
+    .couple-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.629rem;
+      color: var(--deep-red);
+      line-height: 1.1;
+      margin: 10px 0;
+    }
+
+    .parents-info {
+      font-size: 1.058rem;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .event-main-details {
+      border-top: 1px dashed var(--gold);
+      border-bottom: 1px dashed var(--gold);
+      padding: 12px 0;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .main-detail-box h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9257rem;
+      color: #888;
+    }
+
+    .main-detail-box p {
+      font-weight: 600;
+      font-size: 1.19rem;
+      color: var(--maroon);
+    }
+
+    .hashtag {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1.124rem;
+      margin-top: 10px;
+    }
+
+    /* SECTION TITLE */
+    .section-header {
+      text-align: center;
+      margin: 30px 0 15px;
+    }
+
+    .section-header span {
+      font-size: 0.9257rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--deep-red);
+      font-size: 2.116rem;
+    }
+
+    /* FESTIVITIES LIST & CARDS */
+    .festivities-list {
+      padding: 0 15px;
+    }
+
+    .event-card {
+      background: #ffffff;
+      border: 1px solid var(--gold-light);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .event-info {
+      flex: 1;
+      padding-right: 10px;
+    }
+
+    .event-date-title {
+      font-size: 0.9913rem;
+      color: var(--deep-red);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.719rem;
+      color: var(--text-dark);
+      margin: 2px 0;
+    }
+
+    .event-time-venue {
+      font-size: 1.058rem;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .event-quote {
+      font-size: 0.9913rem;
+      font-style: italic;
+      color: #777;
+    }
+
+    .interactive-thumb {
+      width: 85px;
+      height: 85px;
+      background: linear-gradient(135deg, #fff3d1, #ffd275);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      padding: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .thumb-icon {
+      font-size: 1.984rem;
+      margin-bottom: 4px;
+    }
+
+    .thumb-badge {
+      background: var(--deep-red);
+      color: white;
+      font-size: 0.7268rem;
+      padding: 3px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+
+    .dolak-inline-thumb {
+      width: 72px;
+      height: 72px;
+      padding: 5px 4px;
+    }
+
+    .dolak-inline-icon {
+      font-size: 1.55rem;
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .dolak-inline-dots {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dolak-inline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(128,0,0,.55);
+      background: rgba(128,0,0,.12);
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .dolak-inline-dot.active {
+      background: var(--deep-red);
+      transform: scale(1.16);
+    }
+
+    .dolak-inline-thumb.dolak-hit {
+      animation: inlineDolakHit .22s ease;
+    }
+
+    @keyframes inlineDolakHit {
+      0% { transform: scale(1); }
+      45% { transform: scale(.92); }
+      100% { transform: scale(1); }
+    }
+
+    .dolak-inline-info {
+      margin: -4px 15px 18px;
+      padding: 14px 16px;
+      border: 1.5px solid rgba(212,175,55,.55);
+      border-radius: 12px;
+      text-align: center;
+      background: linear-gradient(135deg, #fffdf5, #fff3cf);
+      animation: inlineDolakReveal .45s ease both;
+    }
+
+    .dolak-inline-info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--maroon);
+      font-weight: 600;
+    }
+
+    .dolak-inline-info-text {
+      margin: 4px 0 8px;
+      font-size: .95rem;
+      color: #654d32;
+    }
+
+    .dolak-inline-info-detail {
+      font-size: .9rem;
+      color: #6d6255;
+      line-height: 1.35;
+    }
+
+    @keyframes inlineDolakReveal {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .add-cal-btn {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.9257rem;
+      color: #666;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* TEAM SELECTION */
+    .team-section {
+      background: #fff8f0;
+      border: 1px solid #ffe0b2;
+      border-radius: 12px;
+      margin: 20px 15px;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    .team-grid {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .team-card {
+      flex: 1;
+      background: white;
+      border: 2px solid var(--gold-light);
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .team-card.selected {
+      border-color: var(--deep-red);
+      background: #fff0f0;
+    }
+
+    .team-badge {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--deep-red);
+      color: white;
+      font-size: 0.7268rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .team-card.selected .team-badge {
+      display: block;
+    }
+
+    .team-icon { font-size: 2.38rem; }
+    .team-title { font-size: 1.058rem; font-weight: 700; color: var(--maroon); margin-top: 5px; }
+
+    /* COUNTDOWN */
+    .countdown-section {
+      background: var(--deep-red);
+      color: white;
+      margin: 20px 15px;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .countdown-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.058rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      color: var(--gold-light);
+    }
+
+    .timer-grid {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .time-unit span {
+      display: block;
+      font-size: 1.851rem;
+      font-weight: 700;
+    }
+
+    .time-unit label {
+      font-size: 0.7935rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* RSVP FORM */
+    .rsvp-card {
+      background: white;
+      border: 1px solid var(--gold-light);
+      border-radius: 12px;
+      margin: 20px 15px;
+      padding: 20px 15px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9257rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1.124rem;
+      font-family: inherit;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-btn {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 1.058rem;
+      cursor: pointer;
+    }
+
+    .radio-btn.active {
+      background: #e8f5e9;
+      border-color: #2e7d32;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    .whatsapp-btn {
+      width: 100%;
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.19rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    /* INTERACTIVE MODALS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--cream);
+      width: 100%;
+      max-width: 360px;
+      border-radius: 15px;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.984rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    /* Scratch Canvas for Haldi */
+    .canvas-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 15px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    #scratch-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 20;
+      touch-action: none !important;
+    }
+
+    .reveal-card-content {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fff9e6, #ffecb3);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border: 2px solid var(--gold);
+    }
+
+    /* Dhol Interactive */
+    .dhol-graphic {
+      font-size: 6.612rem;
+      margin: 20px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s;
+    }
+
+    .dhol-graphic:active {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .beat-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .beat-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .beat-dot.active {
+      background: var(--deep-red);
+    }
+      /* Requested: remove any share control/symbol while keeping everything else unchanged. */
+    [class*="share"], [id*="share"], [aria-label*="share" i], [title*="share" i] {
+      display: none !important;
+    }
+
+    /* Hide share controls only; no other page elements are changed. */
+    button.share, a.share, .share-btn, .share-button, .share-icon, #share, #share-button { display:none !important; }
+    [class*="share" i], [id*="share" i], [aria-label*="share" i], [title*="share" i] { display:none !important; }
+
+    /* Remove the remaining circular share container over the couple photo, without changing other elements. */
+    .supplied-hero-photo :is(button, a, div, span):has([class*="share" i], [id*="share" i], [aria-label*="share" i], [title*="share" i]) {
+      display: none !important;
+    }
+    .supplied-hero-photo :is(button, a, div, span)[class*="share" i],
+    .supplied-hero-photo :is(button, a, div, span)[id*="share" i],
+    .supplied-hero-photo :is(button, a, div, span)[aria-label*="share" i],
+    .supplied-hero-photo :is(button, a, div, span)[title*="share" i] {
+      display: none !important;
+    }
+    /* Remove round ball/seal symbol from the Doors Open screen */
+    #door-screen .center-seal {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+    /* ==========================================
+   RECEPTION - MATCH WEDDING CARD STYLE
+========================================== */
+
+.reception-compact-inner {
+  position: relative;
+  z-index: 4;
+  width: 78%;
+  text-align: center;
+  padding: 42px 8px 35px;
+  margin: auto;
+}
+
+.reception-compact-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  color: var(--maroon);
+  margin-bottom: 4px;
+}
+
+.reception-heart-instruction {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #7b5b4b;
+  margin-bottom: 5px;
+}
+
+.reception-heart-wrapper {
+  position: relative;
+  width: 210px;
+  height: 185px;
+  margin: 0 auto 5px;
+  touch-action: none;
+  user-select: none;
+}
+
+.reception-heart-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.reception-heart-svg .heart-dashed {
+  fill: none;
+  stroke: #c77777;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 9 7;
+}
+
+.reception-heart-svg .heart-glow {
+  fill: none;
+  stroke: #c49a2e;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(196,154,46,.75));
+}
+
+.reception-heart-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.reception-progress {
+  width: 150px;
+  height: 5px;
+  margin: 4px auto 8px;
+  border-radius: 10px;
+  background: rgba(196,154,46,.18);
+  overflow: hidden;
+}
+
+.reception-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #c49a2e;
+  transition: width .12s ease;
+}
+
+.reception-trace-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .9rem;
+  color: #806050;
+}
+
+.reception-details {
+  display: none;
+  animation: receptionDetailsReveal .8s ease forwards;
+}
+
+.reception-details-heart {
+  font-size: 42px;
+  margin-bottom: 2px;
+  animation: receptionHeartBeat 1s ease-in-out infinite;
+}
+
+.reception-details-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.65rem;
+  color: var(--maroon);
+}
+
+.reception-details-rule {
+  color: #c49a2e;
+  margin: 5px 0 8px;
+  letter-spacing: 3px;
+}
+
+.reception-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .98rem;
+  font-style: italic;
+  color: #70564b;
+  margin: 5px 0;
+}
+
+@keyframes receptionDetailsReveal {
+  from {
+    opacity: 0;
+    transform: scale(.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes receptionHeartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+   </style>
+</head>
+<body>
+
+  <!-- Floating Petals Container -->
+  <div class="petals-container" id="petals"></div>
+
+  <!-- App Wrapper Frame -->
+  <div class="app-viewport">
+
+    <!-- DOOR SCREEN OVERLAY -->
+    <div id="door-screen">
+      <div class="door-wrapper" id="door-wrapper">
+        <div class="door left"></div>
+        <div class="door right"></div>
+        <div class="center-seal" onclick="unlockDoor()" ontouchstart="unlockDoor(); return false;">
+          <div class="seal-monogram">S & T</div>
+          <div class="seal-text">TAP TO OPEN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="hero-card supplied-hero-photo">
+      <img
+        src ="images/MADHAVARAPU.SURENDRA BABU.png"
+        alt="Surendra Babu and Trisha wedding invitation"
+        style="display:block; width:100%; height:auto; margin:0;"
+      />
+    </div>
+
+    <!-- FESTIVITIES -->
+    <div class="section-header">
+      <span>CELEBRATION</span>
+      <h2>The Festivities</h2>
+    </div>
+
+    <div class="festivities-list">
+      
+      <!-- Haldi Card -->
+      <div class="event-card">
+        <div class="event-info">
+          <div class="event-date-title">Sunday, 23 August 2026</div>
+          <div class="event-name">Pellikoduku and Haldi</div>
+          <div class="event-time-venue">Evening</div>
+          <div class="event-quote">"Turmeric, laughter and the very first blessings."</div>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Haldi%20-%20Saanvi%20%26%20Vihaan&dates=20261208T123000Z%2F20261208T153000Z&details=Haldi%20Ceremony%20-%20Saanvi%20%26%20Vihaan%20Wedding%20Invitation&location=Taj%20Palace%2C%20Hyderabad&ctz=Asia%2FKolkata" class="add-cal-btn" target="_blank" rel="noopener noreferrer">+ ADD TO CALENDAR</a>
+        </div>
+        <div class="interactive-thumb" onclick="openHaldiModal()">
+          <div class="thumb-icon">✨</div>
+          <div class="thumb-badge">Rub to Reveal</div>
+        </div>
+      </div>
+      <!-- Reception Card -->
+<div class="event-card">
+  <div class="event-info">
+    <div class="event-date-title">Wednesday, 26 August 2026</div>
+    <div class="event-name">Reception</div>
+    <div class="event-time-venue">7:00 PM</div>
+    <div class="event-quote">
+      "With love in our hearts, we invite you to celebrate our reception."
+    </div>
+
+    <a href="YOUR_RECEPTION_GOOGLE_CALENDAR_LINK"
+       class="add-cal-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+       + ADD TO CALENDAR
+    </a>
+  </div>
+
+  <div class="interactive-thumb reception-heart-trigger"
+       onclick="openReceptionModal()">
+    <div class="thumb-icon">♡</div>
+    <div class="thumb-badge">Trace the Heart</div>
+  </div>
+</div>
+      <!-- Wedding Card -->
+      <div class="event-card">
+        <div class="event-info">
+          <div class="event-date-title">Thursday, 27 August 2026</div>
+          <div class="event-name">Wedding</div>
+          <div class="event-time-venue">3:31 AM Muhurtham • Sri Dwarakamaye Gardens, Burugupudi</div>
+          <div class="event-quote">"Music, dance and the whole family on its feet."</div>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20-%20Saanvi%20%26%20Vihaan&dates=20261210T123000Z%2F20261210T153000Z&details=Wedding%20-%20Saanvi%20%26%20Vihaan%20Wedding%20Invitation&location=Taj%20Palace%2C%20Hyderabad&ctz=Asia%2FKolkata" class="add-cal-btn" target="_blank" rel="noopener noreferrer">+ ADD TO CALENDAR</a>
+        </div>
+        <div class="interactive-thumb dolak-compact-trigger" onclick="openWeddingModal()">
+          <div class="thumb-icon">🪘</div>
+          <div class="thumb-badge">Tap the Dhol</div>
+        </div>
+      </div>
+
+    </div>
+
+   
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-section">
+      <div class="countdown-title">COUNTING DOWN TO THE MUHURTHAM</div>
+      <div class="timer-grid">
+        <div class="time-unit"><span id="c-days">170</span><label>Days</label></div>
+        <div class="time-unit"><span id="c-hours">04</span><label>Hours</label></div>
+        <div class="time-unit"><span id="c-mins">33</span><label>Mins</label></div>
+        <div class="time-unit"><span id="c-secs">18</span><label>Secs</label></div>
+      </div>
+    </div>
+
+      <div style="text-align:center; margin: 18px 0 12px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=Sri+Dwarakamaye+Gardens+Burugupudi+Andhra+Pradesh"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="display:inline-block; text-decoration:none; color:var(--maroon); font-weight:600; letter-spacing:1px; font-size:0.92rem;">📍 GET DIRECTIONS</a>
+      </div>
+
+    
+
+  <!-- INTERACTIVE MODAL OVERLAYS -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 id="modal-title" style="font-family: 'Cormorant Garamond', serif; color: var(--maroon);"></h3>
+      <p id="modal-subtitle" style="font-size: 0.9913rem; color: #666; margin-top: 4px;"></p>
+
+      <div id="modal-custom-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Envelope Opening Animation
+    function prepareDoorPanels() {
+      const screen = document.getElementById('door-screen');
+      const leftDoor = document.querySelector('#door-screen .door.left');
+      const rightDoor = document.querySelector('#door-screen .door.right');
+      if (!screen || !leftDoor || !rightDoor) return;
+
+      const style = getComputedStyle(screen);
+      const bgImage = style.backgroundImage;
+      const rect = screen.getBoundingClientRect();
+      const w = Math.max(1, Math.round(rect.width));
+      const h = Math.max(1, Math.round(rect.height));
+
+      [leftDoor, rightDoor].forEach(door => {
+        door.style.backgroundImage = bgImage;
+        door.style.backgroundSize = '100% 100%';
+        door.style.backgroundSize = w + 'px ' + h + 'px';
+        door.style.backgroundRepeat = 'no-repeat';
+      });
+      leftDoor.style.backgroundPosition = 'left top';
+      rightDoor.style.backgroundPosition = 'right top';
+      leftDoor.style.display = 'block';
+      rightDoor.style.display = 'block';
+
+      // The same supplied door image is split across the two moving panels.
+      // Keep the overlay transparent behind them so the invitation becomes
+      // visible while the doors are visibly opening.
+      screen.style.backgroundImage = 'none';
+      screen.style.backgroundColor = 'transparent';
+    }
+
+    let doorOpeningStarted = false;
+    function unlockDoor() {
+      if (doorOpeningStarted) return;
+      doorOpeningStarted = true;
+
+      const wrapper = document.getElementById('door-wrapper');
+      const screen = document.getElementById('door-screen');
+      prepareDoorPanels();
+
+      // Force the initial closed state to paint before moving the two halves.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => wrapper.classList.add('door-open'));
+      });
+
+      setTimeout(() => {
+        screen.style.opacity = '0';
+        setTimeout(() => screen.style.display = 'none', 800);
+      }, 5200);
+    }
+
+
+    // 2. Floating Petals Effect
+    function createPetals() {
+      const container = document.getElementById('petals');
+      for (let i = 0; i < 15; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.width = (Math.random() * 10 + 8) + 'px';
+        petal.style.height = (Math.random() * 12 + 10) + 'px';
+        petal.style.animationDelay = (Math.random() * 5) + 's';
+        petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
+
+    // 3. Team Selection Logic
+    function selectTeam(team) {
+      document.getElementById('team-bride').classList.remove('selected');
+      document.getElementById('team-groom').classList.remove('selected');
+      if (team === 'bride') {
+        document.getElementById('team-bride').classList.add('selected');
+      } else {
+        document.getElementById('team-groom').classList.add('selected');
+      }
+    }  
+
+   // 5. Real-Time Countdown
+// Wedding Muhurtham: 27 August 2026 at 3:31 AM IST
+
+const targetDate = new Date("2026-08-27T03:31:00+05:30").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  const daysEl = document.getElementById('c-days');
+  const hoursEl = document.getElementById('c-hours');
+  const minsEl = document.getElementById('c-mins');
+  const secsEl = document.getElementById('c-secs');
+
+  if (diff <= 0) {
+    daysEl.innerText = "00";
+    hoursEl.innerText = "00";
+    minsEl.innerText = "00";
+    secsEl.innerText = "00";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const mins = Math.floor(
+    (diff % (1000 * 60 * 60)) / (1000 * 60)
+  );
+  const secs = Math.floor(
+    (diff % (1000 * 60)) / 1000
+  );
+
+  daysEl.innerText = days.toString().padStart(2, '0');
+  hoursEl.innerText = hours.toString().padStart(2, '0');
+  minsEl.innerText = mins.toString().padStart(2, '0');
+  secsEl.innerText = secs.toString().padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
+
+
+
+
+
+
+
+    // 6. Modal Controls & Interactions
+    const modal = document.getElementById('modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSub = document.getElementById('modal-subtitle');
+    const modalContent = document.getElementById('modal-custom-content');
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalContent.innerHTML = '';
+      document.body.classList.remove('haldi-scratch-lock');
+      modal.classList.remove('dolak-fullscreen-modal');
+      modal.classList.remove('dolak-compact-modal');
+    }
+
+    // Haldi Scratch Reveal
+    function openHaldiModal() {
+      modalTitle.innerText = "Haldi Ceremony";
+      modalSub.innerText = "";
+      modalContent.innerHTML = `
+        <div class="canvas-container">
+          <div class="reveal-card-content haldi-floral-card">
+            <div class="haldi-floral-border top">🌿 🌼 🌸 🌺 🌿 🌼 🌸 🌺 🌿</div>
+            <div class="haldi-floral-border bottom">🌿 🌺 🌸 🌼 🌿 🌺 🌸 🌼 🌿</div>
+            <div class="haldi-floral-side left">🌿<br>🌼<br>🌸<br>🌺<br>🌿</div>
+            <div class="haldi-floral-side right">🌿<br>🌺<br>🌸<br>🌼<br>🌿</div>
+            <h4 style="font-family:'Cormorant Garamond'; color:var(--maroon);">Pellikodudku & Haldi</h4>
+            <p style="font-size: 1.058rem; margin-top:8px;">23 August 2026 | Evening </p>
+            <p style="font-size: 0.9913rem; color:#555;">Home</p>
+          </div>
+          <canvas id="scratch-canvas" width="250" height="250"></canvas>
+        </div>
+      `;
+      modal.style.display = 'flex';
+      document.body.classList.add('haldi-scratch-lock');
+      initScratchCanvas();
+    }
+
+    function initScratchCanvas() {
+      const canvas = document.getElementById('scratch-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffcc00';
+      ctx.fillRect(0, 0, 250, 250);
+      
+      ctx.font = 'italic 16px "Cormorant Garamond"';
+      ctx.fillStyle = '#800000';
+      ctx.textAlign = 'center';
+      ctx.fillText('Swipe to Scratch Yellow Haldi', 125, 130);
+
+      let isDrawing = false;
+      function scratch(e) {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mousemove', scratch);
+
+      canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        isDrawing = true;
+      }, { passive: false });
+      canvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        isDrawing = false;
+      }, { passive: false });
+      canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        scratch(e);
+      }, { passive: false });
+    }
+
+
+
+    function dolakRevealMarkup(innerContent) {
+      return `
+        <div class="dolak-reveal-card">
+          <div class="dolak-top">✨ 🪔 🌺 🎶 🌼 🎵 🌺 🪔 ✨</div>
+          <div class="dolak-bottom">✨ 🌼 🎵 🪔 🌺 🎶 🌼 🪔 ✨</div>
+          <div class="dolak-left">🎶<br>🌺<br>🪔<br>🎵<br>🌼</div>
+          <div class="dolak-right">🎵<br>🌼<br>🪔<br>🌺<br>🎶</div>
+          <div class="dolak-center">
+            <div class="dolak-icon">🪘</div>
+            ${innerContent}
+          </div>
+        </div>`;
+    }
+
+    // wedding beat Interaction
+    let beatCount = 0;
+
+    let inlineDolakCount = 0;
+    function tapInlineDolak() {
+      if (inlineDolakCount >= 4) return;
+
+      inlineDolakCount++;
+      const dot = document.getElementById('inline-dot-' + inlineDolakCount);
+      if (dot) dot.classList.add('active');
+
+      const thumb = document.getElementById('dolak-inline-thumb');
+      if (thumb) {
+        thumb.classList.remove('dolak-hit');
+        void thumb.offsetWidth;
+        thumb.classList.add('dolak-hit');
+      }
+
+      if (inlineDolakCount === 4) {
+        setTimeout(() => {
+          const info = document.getElementById('dolak-inline-info');
+          if (info) info.style.display = 'block';
+        }, 250);
+      }
+    }
+
+    function openWeddingModal() {
+      beatCount = 0;
+      modalContent.innerHTML = `
+        <div class="dolak-compact-page">
+          <button class="dolak-compact-close" onclick="closeModal()" aria-label="Close">×</button>
+          <div class="dolak-flower-top">🌸 🌼 🌺 🌸 🌼 🌺</div>
+          <div class="dolak-flower-left">🌺<br>🌸<br>🌼</div>
+          <div class="dolak-flower-right">🌼<br>🌺<br>🌸</div>
+          <div class="dolak-flower-bottom">🌼 🌺 🌸 🌼 🌺 🌸</div>
+
+          <div id="dolak-tap-stage" class="dolak-compact-inner">
+            <div class="dolak-compact-heading">Tap the Dolak</div>
+            <div class="dolak-compact-drum tap-drum" onclick="tapDhol()">🪘</div>
+            <div class="dolak-tap-dots">
+              <span class="dolak-dot" id="dot-1"></span>
+              <span class="dolak-dot" id="dot-2"></span>
+              <span class="dolak-dot" id="dot-3"></span>
+              <span class="dolak-dot" id="dot-4"></span>
+            </div>
+          </div>
+
+          <div id="dolak-info-stage" class="dolak-compact-inner" style="display:none;">
+            <div class="dolak-compact-drum">🪘</div>
+            <div class="dolak-compact-title">Wedding</div>
+            <div class="dolak-compact-rule">◆ ─────── ◆</div>
+            <div class="dolak-compact-subtitle">Two hearts, two souls, one beautiful journey</div>
+            <div class="dolak-compact-detail">27 August 2026 | 3:31 AM</div>
+            <div class="dolak-compact-detail">Sri Dwarakamaye Gardens, Burugupudi</div>
+          </div>
+        </div>`;
+      modalTitle.innerText = 'Wedding Ceremony';
+      modalSub.innerText = '';
+      modal.style.display = 'flex';
+      modal.classList.add('dolak-compact-modal');
+      document.body.classList.add('haldi-scratch-lock');
+    }
+
+    function tapDhol() {
+      if (beatCount >= 4) return;
+
+      beatCount++;
+      const dot = document.getElementById('dot-' + beatCount);
+      if (dot) dot.classList.add('active');
+
+      const drum = document.querySelector('.tap-drum');
+      if (drum) {
+        drum.classList.remove('dolak-hit');
+        void drum.offsetWidth;
+        drum.classList.add('dolak-hit');
+      }
+
+      if (beatCount === 4) {
+        setTimeout(() => {
+          const tapStage = document.getElementById('dolak-tap-stage');
+          const infoStage = document.getElementById('dolak-info-stage');
+          if (tapStage) tapStage.style.display = 'none';
+          if (infoStage) {
+            infoStage.style.display = 'block';
+            infoStage.classList.add('dolak-info-reveal');
+          }
+        }, 350);
+      }
+    }
+  function openReceptionModal() {
+
+  modalTitle.innerText = 'Reception';
+  modalSub.innerText = '';
+
+  modalContent.innerHTML = `
+    <div class="dolak-compact-page">
+
+      <button
+        class="dolak-compact-close"
+        onclick="closeModal()"
+        aria-label="Close">
+        ×
+      </button>
+
+      <!-- Decorative flowers - same as Wedding -->
+      <div class="dolak-flower-top">
+        🌸 🌼 🌺 🌸 🌼 🌺
+      </div>
+
+      <div class="dolak-flower-left">
+        🌺<br>
+        🌸<br>
+        🌼
+      </div>
+
+      <div class="dolak-flower-right">
+        🌼<br>
+        🌺<br>
+        🌸
+      </div>
+
+      <div class="dolak-flower-bottom">
+        🌼 🌺 🌸 🌼 🌺 🌸
+      </div>
+
+
+      <!-- HEART TRACE STAGE -->
+      <div
+        id="reception-trace-stage"
+        class="reception-compact-inner">
+
+        <div class="reception-compact-heading">
+          Trace Our Hearts
+        </div>
+
+        <div class="reception-heart-instruction">
+          Trace the heart to reveal the celebration
+        </div>
+
+
+        <div class="reception-heart-wrapper">
+
+          <svg
+            class="reception-heart-svg"
+            viewBox="0 0 210 185">
+
+            <path
+              id="reception-heart-path"
+              class="heart-dashed"
+              d="
+                M105 165
+                C95 155 28 115 18 70
+                C8 28 62 8 105 52
+                C148 8 202 28 192 70
+                C182 115 115 155 105 165
+              "
+            />
+
+            <path
+              id="reception-heart-glow"
+              class="heart-glow"
+              d="
+                M105 165
+                C95 155 28 115 18 70
+                C8 28 62 8 105 52
+                C148 8 202 28 192 70
+                C182 115 115 155 105 165
+              "
+            />
+
+          </svg>
+
+
+          <canvas
+            id="reception-heart-canvas"
+            class="reception-heart-canvas"
+            width="210"
+            height="185">
+          </canvas>
+
+        </div>
+
+
+        <div class="reception-progress">
+          <div
+            id="reception-progress-bar"
+            class="reception-progress-bar">
+          </div>
+        </div>
+
+        <div
+          id="reception-trace-message"
+          class="reception-trace-message">
+          Trace the heart with your finger ❤️
+        </div>
+
+      </div>
+
+
+      <!-- RECEPTION DETAILS -->
+      <div
+        id="reception-details"
+        class="reception-compact-inner reception-details">
+
+        <div class="reception-details-heart">
+          ❤️
+        </div>
+
+        <div class="reception-details-title">
+          Reception
+        </div>
+
+        <div class="reception-details-rule">
+          ◆ ─────── ◆
+        </div>
+
+        <div class="reception-detail">
+          Wednesday, 26 August 2026 | 7: 00 PM
+        </div>
+
+        <div class="reception-detail">
+          Reception Celebration
+        </div>
+
+        <div class="reception-detail">
+          With love in our hearts, we invite you
+          to celebrate our reception.
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  modal.style.display = 'flex';
+
+  modal.classList.add('dolak-compact-modal');
+
+  document.body.classList.add('haldi-scratch-lock');
+
+  initReceptionHeart();
+}
+
+
+function initReceptionHeart() {
+
+  const canvas =
+    document.getElementById('reception-heart-canvas');
+
+  const path =
+    document.getElementById('reception-heart-path');
+
+  if (!canvas || !path) return;
+
+  const ctx = canvas.getContext('2d');
+
+  const pathLength =
+    path.getTotalLength();
+
+  let tracing = false;
+  let progress = 0;
+
+  function getPosition(e) {
+
+    const rect =
+      canvas.getBoundingClientRect();
+
+    const clientX =
+      e.touches
+        ? e.touches[0].clientX
+        : e.clientX;
+
+    const clientY =
+      e.touches
+        ? e.touches[0].clientY
+        : e.clientY;
+
+    return {
+      x:
+        (clientX - rect.left) *
+        (canvas.width / rect.width),
+
+      y:
+        (clientY - rect.top) *
+        (canvas.height / rect.height)
+    };
+  }
+
+
+  function distance(a, b) {
+
+    return Math.sqrt(
+      Math.pow(a.x - b.x, 2) +
+      Math.pow(a.y - b.y, 2)
+    );
+  }
+
+
+  function checkHeart(position) {
+
+    let closest = Infinity;
+
+    /*
+      Check user's finger against
+      the heart outline.
+    */
+
+    for (
+      let i = 0;
+      i <= 120;
+      i++
+    ) {
+
+      const point =
+        path.getPointAtLength(
+          (i / 120) * pathLength
+        );
+
+      const d =
+        distance(position, point);
+
+      if (d < closest) {
+        closest = d;
+      }
+    }
+
+
+    /*
+      Only count progress when
+      finger is close to heart.
+    */
+
+    if (closest < 30) {
+
+      progress += 1.2;
+
+      if (progress > 100) {
+        progress = 100;
+      }
+
+      const bar =
+        document.getElementById(
+          'reception-progress-bar'
+        );
+
+      if (bar) {
+        bar.style.width =
+          progress + '%';
+      }
+
+      if (progress >= 100) {
+        revealReceptionDetails();
+      }
+    }
+  }
+
+
+  function startTrace(e) {
+
+    e.preventDefault();
+
+    tracing = true;
+
+    checkHeart(
+      getPosition(e)
+    );
+  }
+
+
+  function moveTrace(e) {
+
+    if (!tracing) return;
+
+    e.preventDefault();
+
+    checkHeart(
+      getPosition(e)
+    );
+  }
+
+
+  function stopTrace() {
+
+    tracing = false;
+  }
+
+
+  /* Mouse */
+
+  canvas.addEventListener(
+    'mousedown',
+    startTrace
+  );
+
+  canvas.addEventListener(
+    'mousemove',
+    moveTrace
+  );
+
+  canvas.addEventListener(
+    'mouseup',
+    stopTrace
+  );
+
+  canvas.addEventListener(
+    'mouseleave',
+    stopTrace
+  );
+
+
+  /* Mobile */
+
+  canvas.addEventListener(
+    'touchstart',
+    startTrace,
+    { passive: false }
+  );
+
+  canvas.addEventListener(
+    'touchmove',
+    moveTrace,
+    { passive: false }
+  );
+
+  canvas.addEventListener(
+    'touchend',
+    stopTrace,
+    { passive: false }
+  );
+}
+
+
+function revealReceptionDetails() {
+
+  const traceStage =
+    document.getElementById(
+      'reception-trace-stage'
+    );
+
+  const details =
+    document.getElementById(
+      'reception-details'
+    );
+
+  const glow =
+    document.getElementById(
+      'reception-heart-glow'
+    );
+
+
+  if (glow) {
+    glow.style.opacity = '1';
+  }
+
+
+  setTimeout(() => {
+
+    if (traceStage) {
+      traceStage.style.display = 'none';
+    }
+
+    if (details) {
+      details.style.display = 'block';
+    }
+
+  }, 700);
+}
+  </script>
+
+<script>
+(function(){
+  function removeShareControls(){
+    document.querySelectorAll('button,a,div,span').forEach(function(el){
+      var a=((el.getAttribute('aria-label')||'')+' '+(el.getAttribute('title')||'')+' '+(el.id||'')+' '+(el.className||'')).toLowerCase();
+      if(/share/.test(a)) { el.style.setProperty('display','none','important'); var parent=el.closest('.supplied-hero-photo'); if(parent){ var holder=el.parentElement; if(holder && holder!==parent) holder.style.setProperty('display','none','important'); } }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', removeShareControls);
+  new MutationObserver(removeShareControls).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+</body>
+</html>
