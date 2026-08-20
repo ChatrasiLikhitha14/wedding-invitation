@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Trisha & Surendra Babu - Wedding Invitation</title>
+  <title>Tirisha & Surendra Babu - Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -28,7 +28,6 @@
       font-family: 'Cormorant Garamond', serif !important;
       font-style: italic !important;
     }
-
     body {
       font-family: 'Cormorant Garamond', serif;
       background-color: var(--cream);
@@ -80,7 +79,10 @@
     /* SCREEN 1: DOORS / ENVELOPE */
     #door-screen {
       position: fixed;
-    inset: 0;
+    top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 430px;
     width: 100%;
     height: 100%;
     z-index: 1000;
@@ -1350,9 +1352,14 @@
    </style>
 </head>
 <body>
-
+   
   <!-- Floating Petals Container -->
   <div class="petals-container" id="petals"></div>
+
+  <!-- ADD THE AUDIO TAG HERE -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="images/wedding-audio.mpeg" type="audio/mpeg">
+  </audio>
 
   <!-- App Wrapper Frame -->
   <div class="app-viewport">
@@ -1427,9 +1434,9 @@
       <!-- Wedding Card -->
       <div class="event-card">
         <div class="event-info">
-          <div class="event-date-title">Thursday, 27 August 2026</div>
+          <div class="event-date-title">Wednesday, 26 August 2026</div>
           <div class="event-name">Wedding</div>
-          <div class="event-time-venue">3:31 AM Muhurtham • Sri Dwarakamaye Gardens, Burugupudi</div>
+          <div class="event-time-venue">3:31 AM (Early Morning) Muhurtham </div>
           <div class="event-quote">"Music, dance and the whole family on its feet."</div>
           <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20-%20Saanvi%20%26%20Vihaan&dates=20261210T123000Z%2F20261210T153000Z&details=Wedding%20-%20Saanvi%20%26%20Vihaan%20Wedding%20Invitation&location=Taj%20Palace%2C%20Hyderabad&ctz=Asia%2FKolkata" class="add-cal-btn" target="_blank" rel="noopener noreferrer">+ ADD TO CALENDAR</a>
         </div>
@@ -1514,6 +1521,8 @@
       const wrapper = document.getElementById('door-wrapper');
       const screen = document.getElementById('door-screen');
       prepareDoorPanels();
+      
+      document.getElementById('bg-music').play().catch(() => {});
 
       // Force the initial closed state to paint before moving the two halves.
       requestAnimationFrame(() => {
@@ -1557,7 +1566,7 @@
    // 5. Real-Time Countdown
 // Wedding Muhurtham: 27 August 2026 at 3:31 AM IST
 
-const targetDate = new Date("2026-08-27T03:31:00+05:30").getTime();
+const targetDate = new Date("2026-08-26T03:31:00+05:30").getTime();
 
 function updateCountdown() {
   const now = new Date().getTime();
@@ -1631,7 +1640,7 @@ setInterval(updateCountdown, 1000);
             <div class="haldi-floral-side right">🌿<br>🌺<br>🌸<br>🌼<br>🌿</div>
             <h4 style="font-family:'Cormorant Garamond'; color:var(--maroon);">Pellikodudku & Haldi</h4>
             <p style="font-size: 1.058rem; margin-top:8px;">23 August 2026 | Evening </p>
-            <p style="font-size: 0.9913rem; color:#555;">Home</p>
+            <p style="font-size: 0.9913rem; color:#555;">At Home</p>
           </div>
           <canvas id="scratch-canvas" width="250" height="250"></canvas>
         </div>
@@ -1750,7 +1759,7 @@ setInterval(updateCountdown, 1000);
             <div class="dolak-compact-title">Wedding</div>
             <div class="dolak-compact-rule">◆ ─────── ◆</div>
             <div class="dolak-compact-subtitle">Two hearts, two souls, one beautiful journey</div>
-            <div class="dolak-compact-detail">27 August 2026 | 3:31 AM</div>
+            <div class="dolak-compact-detail">26 August 2026 | 3:31 AM (Early Morning)</div>
             <div class="dolak-compact-detail">Sri Dwarakamaye Gardens, Burugupudi</div>
           </div>
         </div>`;
@@ -1919,7 +1928,7 @@ setInterval(updateCountdown, 1000);
         </div>
 
         <div class="reception-detail">
-          Reception Celebration
+          Sri Dwarakamaye Gardens, Burugupudi
         </div>
 
         <div class="reception-detail">
