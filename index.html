@@ -1374,7 +1374,7 @@ body.door-lock .app-viewport {
       <div class="door-wrapper" id="door-wrapper">
         <div class="door left"></div>
         <div class="door right"></div>
-        <div class="center-seal" onclick="unlockDoor()" ontouchstart="unlockDoor(); return false;">
+        <div class="center-seal" id="door-seal">
           <div class="seal-monogram">S & T</div>
           <div class="seal-text">TAP TO OPEN</div>
         </div>
@@ -1515,6 +1515,7 @@ document.body.classList.add('door-lock');
     }
 
     let doorOpeningStarted = false;
+    document.getElementById('door-seal').addEventListener('click', unlockDoor);
     function unlockDoor() {
       if (doorOpeningStarted) return;
       doorOpeningStarted = true;
