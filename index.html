@@ -1523,7 +1523,9 @@ document.body.classList.add('door-lock');
       const screen = document.getElementById('door-screen');
       prepareDoorPanels();
       
-      document.getElementById('bg-music').play().catch(() => {});
+      document.getElementById('bg-music').play().catch((err) => {
+  alert('Audio failed: ' + err.name + ' - ' + err.message);
+});
       document.body.classList.remove('door-lock');   // ADD THIS LINE
 
 
